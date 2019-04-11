@@ -31,7 +31,7 @@ phpize && \
 --enable-http2  \
 --enable-sockets \
 --enable-mysqlnd && \
-make clean && make && sudo make install &&\
+make clean && make && make install &&\
 cd .. &&\
 rm -rf swoole-src-4.3.1 &&\
 rm -rf swoole.tar.gz
