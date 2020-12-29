@@ -1,9 +1,10 @@
 
 FROM ubuntu:18.04
 
-MAINTAINER yuangu <lifulinghan@aol.com>
+LABEL maintainer="lifulinghan@aol.com"
 
-RUN apt-get -y update && \
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
+    apt-get -y update && \
     apt-get install -y --no-install-recommends build-essential cmake git  &&\
     apt-get clean &&\
     apt-get -y autoremove && \

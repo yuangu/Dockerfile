@@ -1,10 +1,12 @@
 
 FROM ubuntu:18.04
 
-MAINTAINER yuangu <lifulinghan@aol.com>
+LABEL maintainer="lifulinghan@aol.com"
+
 
 #安装编译环境
-RUN apt-get -y update && \
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
+    apt-get -y update && \
     apt-get install -y --no-install-recommends build-essential autoconf make git &&\
     apt-get install -y --no-install-recommends libssl-dev openssl  libcurl4-openssl-dev curl libbz2-dev libxml2-dev libjpeg-dev libpng-dev libfreetype6-dev libzip-dev
 
