@@ -5,10 +5,12 @@ LABEL maintainer="lifulinghan@aol.com"
 
 
 #安装编译环境
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list &&\
     apt-get -y update && \
-    apt-get install -y --no-install-recommends build-essential autoconf make git &&\
-    apt-get install -y --no-install-recommends libssl-dev openssl  libcurl4-openssl-dev curl libbz2-dev libxml2-dev libjpeg-dev libpng-dev libfreetype6-dev libzip-dev
+    apt-get install -y --no-install-recommends build-essential autoconf make git \
+    libssl-dev openssl libsqlite3-dev  libonig-dev libpq-dev libcurl4-openssl-dev \
+    curl libbz2-dev libxml2-dev libjpeg-dev libpng-dev libfreetype6-dev libzip-dev gnupg2
+
 
 #编译安装php
 RUN curl -o php-7.3.4.tar.xz "https://www.php.net/get/php-7.3.4.tar.xz/from/this/mirror" -L -k && \
