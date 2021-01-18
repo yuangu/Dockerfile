@@ -46,7 +46,7 @@ RUN echo "deb [arch=amd64] http://nginx.org/packages/mainline/ubuntu/ bionic ngi
     location ~ \.php?.*$  \n \
     {   \n \
     fastcgi_pass   127.0.0.1:9000;  \n \
-    fastcgi_param  SCRIPT_FILENAME  /work/public\$fastcgi_script_name;  \n \
+    fastcgi_param  SCRIPT_FILENAME  /work/public$fastcgi_script_name;  \n \
     include        fastcgi_params;   \n \
     } \n \
     } \n'  >> /etc/nginx/conf.d/php.conf
