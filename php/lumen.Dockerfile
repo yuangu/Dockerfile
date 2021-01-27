@@ -9,7 +9,7 @@ RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list &
     apt-get install -y --no-install-recommends build-essential autoconf make git &&\
     apt-get install -y --no-install-recommends libssl-dev openssl libsqlite3-dev \
     libonig-dev libpq-dev libcurl4-openssl-dev curl libbz2-dev libxml2-dev libjpeg-dev \
-    libpng-dev libfreetype6-dev libzip-dev gnupg2 apt-utils
+    libpng-dev libfreetype6-dev libzip-dev gnupg2 apt-utils wget
 
 #编译安装php
 RUN curl -o php-7.4.14.tar.xz "http://mirrors.sohu.com/php/php-7.4.14.tar.xz" -L -k &&\
@@ -26,7 +26,17 @@ RUN curl -o php-7.4.14.tar.xz "http://mirrors.sohu.com/php/php-7.4.14.tar.xz" -L
     sed 's!=NONE/!=!g'  /usr/local/etc/php-fpm.conf.default | tee /usr/local/etc/php-fpm.conf > /dev/null &&\
     cd .. &&\
     rm -rf ./php-7.4.14.tar.xz &&\
-    rm -rf ./php-7.4.14  
+    rm -rf ./php-7.4.14  &&\
+    wget https://github.com/phpredis/phpredis/archive/5.3.2.tar.gz  &&\
+    tar -xvf 5.3.2.tar.gz  &&\
+    cd phpredis-5.3.2/   &&\
+    phpize  &&\
+    ./configure  &&\
+    make && make install  &&\
+    echo "extension=redis.so">>/usr/local/etc/php/conf.d/ext_redis.ini    &&\
+    cd .. &&\
+    rm -rf 5.3.2.tar.gz &&\
+    rm -rf phpredis-5.3.2
 
 RUN echo "deb [arch=amd64] http://nginx.org/packages/mainline/ubuntu/ bionic nginx">>/etc/apt/sources.list  &&\
     echo "deb-src http://nginx.org/packages/mainline/ubuntu/ bionic nginx">>/etc/apt/sources.list  &&\
