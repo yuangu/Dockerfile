@@ -27,7 +27,7 @@ RUN curl -o php-7.4.14.tar.xz "http://mirrors.sohu.com/php/php-7.4.14.tar.xz" -L
     cd .. &&\
     rm -rf ./php-7.4.14.tar.xz &&\
     rm -rf ./php-7.4.14  &&\
-    wget https://github.com/phpredis/phpredis/archive/5.3.2.tar.gz  &&\
+    wget --no-check-certificate https://github.com/phpredis/phpredis/archive/5.3.2.tar.gz  &&\
     tar -xvf 5.3.2.tar.gz  &&\
     cd phpredis-5.3.2/   &&\
     phpize  &&\
